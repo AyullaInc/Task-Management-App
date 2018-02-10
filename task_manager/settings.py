@@ -26,7 +26,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # One month
 ACCOUNT_ACTIVATION_DAYS = 7
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
