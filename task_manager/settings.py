@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'task_manager_staging',
+        'USER': 'ayulla',
+        'PASSWORD': 'l_pq9905+@s*6',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',                      # Set to empty string for default.
     }
 }
 
@@ -155,18 +159,6 @@ if DEBUG:
     
 # Used for static and media file storage in production
 else:
-    
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'task_manager_staging',
-            'USER': 'ayulla',
-            'PASSWORD': 'l_pq9905+@s*6',
-            'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-            'PORT': '3306',                      # Set to empty string for default.
-        }
-    }
-
     import dj_database_url
     DATABASES['default'] = dj_database_url.config()
     
