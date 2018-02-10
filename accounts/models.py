@@ -57,6 +57,8 @@ class User(AbstractUser):
     
     objects = UserManager()
     
+    REQUIRED_FIELDS = []
+    
     class Meta:
         
         ordering = ('first_name', 'last_name')
