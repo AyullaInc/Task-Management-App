@@ -28,7 +28,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 # days for how long static files remain in the cache
 CACHE_MAX_AGE = 60
 
-if DEBUG:
+'''if DEBUG:
 
     DATABASES = {
     'default': {
@@ -156,7 +156,7 @@ if DEBUG:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
     MEDIA_URL = '/%s/' % MEDIAFILES_LOCATION
 
-    
+
 # Used for static and media file storage in production
 else:
     import dj_database_url
@@ -164,9 +164,11 @@ else:
     
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['*']'''
     
-    
+import dj_database_url
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DATABASES['default'] = dj_database_url.config()
 ##CACHES = {
 ##    'default': {
 ##        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
