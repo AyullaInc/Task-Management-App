@@ -7,14 +7,13 @@ from django.conf import settings
 
 class UserManager(BaseUserManager):
     
-    def create_user(self, username, role, password=None):
+    def create_user(self, username, password=None):
         
         if not username:
             raise ValueError('Please Enter a Username')
             
         user = self.model(
             username=username,
-            role=role
             )
         
         user.set_password(password)
@@ -22,11 +21,10 @@ class UserManager(BaseUserManager):
         
         return user
     
-    def create_superuser(self, username, role, password):
+    def create_superuser(self, username, password):
         
         user = self.create_user(
             username,
-            role=role,
             password=password,
             )
         
