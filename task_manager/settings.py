@@ -77,21 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'task_manager_staging',
-        'USER': 'ayulla',
-        'PASSWORD': 'l_pq9905+@s*6',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306',                      # Set to empty string for default.
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -139,8 +124,8 @@ STATICFILES_DIRS = [
 # days for how long static files remain in the cache
 CACHE_MAX_AGE = 60
 
-'''if DEBUG:
-
+if DEBUG:
+    
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -164,13 +149,4 @@ else:
     
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
-    ALLOWED_HOSTS = ['*']'''
-    
-import dj_database_url
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-DATABASES['default'] = dj_database_url.config()
-##CACHES = {
-##    'default': {
-##        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-##    }
-##}
+    ALLOWED_HOSTS = ['*']
