@@ -12,3 +12,6 @@ def team_signup(request):
 def login(request):
 	    return render(request, 'login.html', {})
 
+
+
+
