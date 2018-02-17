@@ -60,7 +60,7 @@ class UserAdmin(BaseUserAdmin):
     (None, {'fields': ('username', 'first_name', 'middle_name',
                        'last_name', 'password'
                        )}),
-    ('Personal info', {'fields': ('email',)}),
+    ('Personal info', {'fields': ('email', 'role')}),
     ('Permissions', {'fields': ('is_admin','is_staff', 'is_active')}),
     )
 
@@ -76,3 +76,4 @@ ordering = ('username',)
 filter_horizontal = ()
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
+admin.site.register(Team)

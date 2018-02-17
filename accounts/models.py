@@ -37,12 +37,18 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     
+    ROLES = (
+        ('ON', 'Owner'),
+        ('AD', 'Admin'),
+        ('RU', 'Regular User')
+    )
+    
     id = models.AutoField(primary_key=True)
     is_active = models.BooleanField(default=True)
-    is_suspended = models.BooleanField(default=False)
-    is_disabled = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_deactivated = models.BooleanField(default=False)
+    
     signed_in_once = models.BooleanField(default=False)
     saw_walkthrough = models.BooleanField(default=False)
     
@@ -52,9 +58,9 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=200, null=True, blank=True)
     middle_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
-        
-    latest_contact = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     
+    role = models.CharField(max_length=2, choices=ROLES, null=True, blank=True)
+        
     objects = UserManager()
     
     REQUIRED_FIELDS = []
@@ -92,3 +98,25 @@ class User(AbstractUser):
             return self.last_name
         
         return 'N/A'
+
+    
+class Team(models.Model):
+    
+    USAGE_OPTIONS = (
+        ('WK', 'Work'),
+        ('SC', 'School'),
+        ('OR', 'Other')
+    )
+    
+    PLANS = (
+        ('FR', 'Free'),
+        ('PD', 'Paid')
+    )
+    
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_teams')
+    name = models.CharField(max_length=400)
+    usage = models.CharField(max_length=2, choices=USAGE_OPTIONS)
+    plan = models.CharField(max_length=2, choices=PLANS)
+    
+    def __str__(self):
+        return self.name
