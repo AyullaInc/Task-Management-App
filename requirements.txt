@@ -28,7 +28,7 @@ virtualenv==15.1.0
 whitenoise==3.3.0
 asgi-redis==0.8.3
 asgiref==0.9
-autobahn==0.12.1
+autobahn==20.12.3
 channels==0.9.3
 daphne==0.9.1
 haikunator==1.0.1
